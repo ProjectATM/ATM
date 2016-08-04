@@ -17,7 +17,7 @@ import static javax.swing.text.StyleConstants.Bold;
 public class FrontPage {
     public static void main(String[] args) {
         JFrame jf=new JFrame("Welcome To The United Bank");
-        jf.getContentPane().setBackground(Color.RED );
+        jf.getContentPane().setBackground(Color.ORANGE );
         jf.setVisible(true);
         jf.setLayout(null);
         jf.setSize(500,500);
@@ -30,7 +30,7 @@ public class FrontPage {
         JLabel jl1=new JLabel("Welcome To United Bank");
         jl1.setFont(new Font("Arial", Font.BOLD, 30));
         jf.add(jl1);
-        jl1.setForeground(Color.WHITE);
+        jl1.setForeground(Color.BLACK);
         jl1.setBounds(60, 200, 500, 30);
         //jl1.setText("Welcome To United Bank");
         
