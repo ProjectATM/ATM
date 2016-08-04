@@ -36,7 +36,7 @@ public class FrontPage {
         
          JLabel jl2=new JLabel("Press Button To Continue...");
         jf.add(jl2);
-        jl2.setForeground(Color.WHITE);
+        jl2.setForeground(Color.BLACK);
         jl2.setBounds(10, 400, 500, 30);
         
     }
