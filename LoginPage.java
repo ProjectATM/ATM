@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 public class LoginPage extends javax.swing.JFrame {
     String tf,pf;
     ResultSet res;
+    int i=0;
     public LoginPage() {
         initComponents();
         getContentPane().setBackground(java.awt.Color.ORANGE);
@@ -120,20 +121,18 @@ public class LoginPage extends javax.swing.JFrame {
         Statement stmt=con.createStatement();
         res=stmt.executeQuery("select*from ATM");
             while(res.next()){
-             String id=res.getString("UNIQUEID");
-             String pwd=res.getString("PIN");
-             if(id.equals(jtf1.getText()) && pwd.equals(new String(jpf.getText())) ){
+                  
+             if(res.getString("UNIQUEID").equals(jtf1.getText()) && res.getString("PIN").equals(new String(jpf.getText())) ){
             new OptionPage().setVisible(true);
             this.dispose();
-            break;
+            i++;
+            }   
             }
-            
-            else{
+              if(i==0){
+                 
             JOptionPane.showMessageDialog(rootPane,"Inavalid UNIQUEID or PIN");
             new FrontPage().setVisible(true);
             this.dispose();
-            break;
-            }
             }
         }
     catch(Exception e){
