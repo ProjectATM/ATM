@@ -19,6 +19,7 @@ public class FrontPage extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(java.awt.Color.blue);
         setName("frame"); // NOI18N
+        setResizable(false);
 
         jl1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jl1.setText("Welcome To United Bank");

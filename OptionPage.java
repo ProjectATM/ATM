@@ -39,6 +39,7 @@ public class OptionPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome To United Bank");
         setBackground(new java.awt.Color(255, 255, 0));
+        setResizable(false);
 
         jl1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jl1.setText("Choose Options.......");

@@ -28,6 +28,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome To United Bank");
+        setResizable(false);
 
         jl1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jl1.setText("UNIQUE ID");
