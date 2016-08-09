@@ -52,6 +52,11 @@ public class OptionPage extends javax.swing.JFrame {
         });
 
         jb2.setText("Cash Withdraw");
+        jb2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb2ActionPerformed(evt);
+            }
+        });
 
         jb3.setText("Fast Cash");
 
@@ -98,6 +103,11 @@ public class OptionPage extends javax.swing.JFrame {
     private void jb1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jb1ActionPerformed
+
+    private void jb2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb2ActionPerformed
+       new Withdrawl().setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jb2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -6,7 +6,8 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class LoginPage extends javax.swing.JFrame {
-    String tf,pf;
+    String pf;
+    public static String tf,n;
     ResultSet res;
     int i=0;
     public LoginPage() {
@@ -104,7 +105,7 @@ public class LoginPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf1ActionPerformed
-    String tf=jtf1.getText();  
+     tf=jtf1.getText();  
     }//GEN-LAST:event_jtf1ActionPerformed
 
     private void jpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpfActionPerformed
@@ -124,6 +125,8 @@ public class LoginPage extends javax.swing.JFrame {
             while(res.next()){
                   
              if(res.getString("UNIQUEID").equals(jtf1.getText()) && res.getString("PIN").equals(new String(jpf.getText())) ){
+            n=res.getString("NAME");
+            tf=res.getString("UNIQUEID");
             new OptionPage().setVisible(true);
             this.dispose();
             i++;
@@ -176,7 +179,7 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jl2;
     private javax.swing.JLabel jl3;
     private javax.swing.JPasswordField jpf;
-    private javax.swing.JTextField jtf1;
+    public javax.swing.JTextField jtf1;
     private javax.swing.JButton ok;
     // End of variables declaration//GEN-END:variables
 }

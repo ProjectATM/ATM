@@ -4,6 +4,7 @@ public class FrontPage extends javax.swing.JFrame {
     public FrontPage() {
         initComponents();
         getContentPane().setBackground(java.awt.Color.ORANGE);
+         String uID;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
