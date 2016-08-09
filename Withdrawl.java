@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ATM;
+
 
 import com.sun.prism.paint.Paint;
 import java.awt.Color;
@@ -14,13 +14,21 @@ import java.lang.Object;
  * @author Yugansh Sinha
  */
 public class Withdrawl extends javax.swing.JFrame {
-    
+    String uID;
+    String name,tF;
+    String balance,al;
+    int a,b;
     /**
      * Creates new form Withdrawl
      */
     public Withdrawl() {
         initComponents();
         getContentPane().setBackground(Color.ORANGE);
+        uID=LoginPage.tf;
+        name=LoginPage.n;
+                System.out.println("name is "+name);
+                System.out.println("uid is "+uID);
+
     }
 
     /**
@@ -31,7 +39,6 @@ public class Withdrawl extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jLabel1 = new javax.swing.JLabel();
         tF1 = new javax.swing.JTextField();
         jB1 = new javax.swing.JButton();
@@ -40,7 +47,7 @@ public class Withdrawl extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 102, 0));
 
         jLabel1.setBackground(new java.awt.Color(255, 153, 0));
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Enter The Amount To Be Withdrawn");
 
         jB1.setText("Confirm");
@@ -81,42 +88,71 @@ public class Withdrawl extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void tF1ActionPerformed(java.awt.event.ActionEvent evt) {                                     
+    // tF=tF1.getText();  
+    }     
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB1ActionPerformed
-        // TODO add your handling code here:
-        double al=Double.parseDouble(tF1.getText());
+         
+        
         String UniqueId = null;
         String name = null;
-        Connection Con=null;
-        int pin=0,balance=0;
-        double nb=0;
+        Connection Con;
+        String pin;
+        int nb=0;
         Statement Stmt;
+        Statement Stmt2;
         ResultSet ERs;
         try
         {
-            String uID=null;
-		 /*yaha par uniqueid chahiye aur uske variable ka naam uID rakhna*/ 
+            
+             /*yaha par uniqueid chahiye aur uske variable ka naam uID rakhna*/ 
             Class.forName("oracle.jdbc.driver.OracleDriver");
-           // Con=DriverManager.getConnection("jbdc:odbc:MS Access Database");
-            Con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","YuSi007","Yugansh");
+            
+            Con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","system","mayank");
             Stmt=Con.createStatement();
-            ERs=Stmt.executeQuery("Select uniqueid,name,pin,balance from ATM");
+            ERs=Stmt.executeQuery("Select * from ATM");
+            Stmt2=Con.createStatement();
             while(ERs.next())
             {
-                UniqueId=ERs.getString(UniqueId);
-                name=ERs.getString(name);
-                pin=ERs.getInt(pin);
-                balance=ERs.getInt(balance);                            
+                UniqueId=ERs.getString("UNIQUEID");
+                name=ERs.getString("NAME");               //akhri wali entry ki values dalengi loop chal raha hai
+                pin=ERs.getString("PIN");
+                balance=ERs.getString("BALANCE");
+                 // yahan koi dikkat hai
+                System.out.println(" ------------------------------------------------------------------");
+                System.out.println(balance);
+                System.out.println(tF1.getText());
+                 b=Integer.parseInt(balance);
+                 a=Integer.parseInt(tF1.getText());
+                 System.out.println(" ------------------------------------------------------------------");
+                 System.out.println("a is "+a);
+                 System.out.println("b is "+b);
+                 if(UniqueId.equals(uID)){
+         
+                    System.out.println(name);
+                    System.out.println(UniqueId);
+                    break;
+                    
+                }
             }
-            if(al<(balance-1000))
+            if(a<(b-1000))
             {
-                nb=(balance-al);
-                ERs=Stmt.executeQuery("UPDATE ATM\n" + "set balance="+nb+" where UNIQUEID='"+uID+"';");
+                nb=(b-a);
+                //Integer k=nb;
+                String k=Integer.toString(nb);
+                System.out.println(k);
+                String u="update ATM set BALANCE="+nb+" where UNIQUEID='"+uID+"'";
+                int i=Stmt2.executeUpdate(u);
+                System.out.println(u);
+                System.out.println("balance is "+nb);
             }
             else
             {
                 System.out.println("Don't Have Sufficient Balance To Withdraw.");
             }
+            new AskReceipt().setVisible(true);
+            this.dispose();
         }
         catch(Exception e)
         {System.out.println(e.getMessage());}
@@ -148,7 +184,7 @@ public class Withdrawl extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Withdrawl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
