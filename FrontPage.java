@@ -3,8 +3,8 @@ import com.sun.prism.paint.Color;
 public class FrontPage extends javax.swing.JFrame {
     public FrontPage() {
         initComponents();
-        getContentPane().setBackground(java.awt.Color.ORANGE);
-         String uID;
+        getContentPane().setBackground(java.awt.Color.ORANGE);   ////******for changing the color of frame********////
+        // String uID;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

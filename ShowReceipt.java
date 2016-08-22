@@ -1,5 +1,8 @@
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,6 +22,8 @@ public class ShowReceipt extends javax.swing.JFrame {
     public ShowReceipt() {
         initComponents();
         getContentPane().setBackground(Color.ORANGE);
+       
+       
     }
 
     /**
@@ -60,7 +65,9 @@ public class ShowReceipt extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
+         //new CollectCash().setVisible(false);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

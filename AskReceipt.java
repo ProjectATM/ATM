@@ -1,9 +1,5 @@
 
 import java.awt.Color;
-import static java.lang.Thread.sleep;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.Timer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -85,17 +81,23 @@ public class AskReceipt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb1ActionPerformed
+      
         
-        
+       /* final Timer t=new Timer(10000, null);
+         final int delay=10000;
+        final ActionListener taskPerformer = new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+          //t.setDelay(10000);  
+          c.setVisible(true);
+          
+          t.getDelay();
+          c.dispose();
+         
+              }
+      }; */ 
+          this.dispose();
+          new ShowReceipt().setVisible(true);
        
-        try {
-             new CollectCash().setVisible(true);
-            sleep(10000);
-            
-           
-        } catch (InterruptedException ex) {
-            Logger.getLogger(AskReceipt.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_jb1ActionPerformed
 
     /**
@@ -138,4 +140,5 @@ public class AskReceipt extends javax.swing.JFrame {
     private javax.swing.JButton jb2;
     private javax.swing.JLabel jl1;
     // End of variables declaration//GEN-END:variables
-}
+
+         
