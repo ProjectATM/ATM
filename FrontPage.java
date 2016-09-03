@@ -1,5 +1,4 @@
 
-import com.sun.prism.paint.Color;
 public class FrontPage extends javax.swing.JFrame {
     public FrontPage() {
         initComponents();
