@@ -1,23 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-import com.sun.prism.paint.Paint;
 import java.awt.Color;
 import java.sql.*;
-import java.lang.Object;
-import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Withdrawl extends javax.swing.JFrame implements Runnable {
+public class Withdrawl extends javax.swing.JFrame {
     String uID;
     String name,tF;
     String balance,al;
-    int a,b;
+    int b;
+    static int nb,a;
+    static String accno;
    
     public Withdrawl() {
         initComponents();
@@ -28,20 +20,7 @@ public class Withdrawl extends javax.swing.JFrame implements Runnable {
         System.out.println("uid is "+uID);
                 
     }
-    @Override
-    public void run() {
-        
-        System.out.println("run starts");
-        try {
-            sleep(5000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Withdrawl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        new AskReceipt().setVisible(true);
-        System.out.println("run compelete");
-    }
-    
+   
     
     @SuppressWarnings("unchecked")
     private void initComponents() {
@@ -100,21 +79,17 @@ public class Withdrawl extends javax.swing.JFrame implements Runnable {
     }  
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) throws InterruptedException {//GEN-FIRST:event_jB1ActionPerformed
-         
         new CollectCash().setVisible(true);
-        Withdrawl with=new Withdrawl();
-      Thread t=new Thread(with);
-       t.start();
-       
+        this.dispose();
         String UniqueId = null;
         String name = null;
         Connection Con;
         String pin;
-        int nb=0;
+        nb=0;
         Statement Stmt;
         Statement Stmt2;
         ResultSet ERs;
-         this.dispose();
+         
         try
         {
             
@@ -131,18 +106,13 @@ public class Withdrawl extends javax.swing.JFrame implements Runnable {
                 name=ERs.getString("NAME");             
                 pin=ERs.getString("PIN");
                 balance=ERs.getString("BALANCE");
-                //System.out.println(" ------------------------------------------------------------------");
-                //System.out.println(balance);
-                //System.out.println(tF1.getText());
+                accno=ERs.getString("ACCNO");
                  b=Integer.parseInt(balance);
                  a=Integer.parseInt(tF1.getText());
-                 //System.out.println(" ------------------------------------------------------------------");
-                 //System.out.println("a is "+a);
-                 //System.out.println("b is "+b);
+                
                  if(UniqueId.equals(uID)){
          
-                    //System.out.println(name);
-                    //System.out.println(UniqueId);
+                    
                     break;
                     
                 }
@@ -150,9 +120,9 @@ public class Withdrawl extends javax.swing.JFrame implements Runnable {
             if(a<(b-1000))
             {
                 nb=(b-a);
-                //Integer k=nb;
+                
                 String k=Integer.toString(nb);
-                //System.out.println(k);
+                
                 String u="update ATM set BALANCE="+nb+" where UNIQUEID='"+uID+"'";
                 int i=Stmt2.executeUpdate(u);
                 System.out.println(u);
@@ -167,11 +137,11 @@ public class Withdrawl extends javax.swing.JFrame implements Runnable {
         }
         catch(Exception e)
         {System.out.println(e.getMessage());}
-       
-        
+     
+     
     }
     public static void main(String args[]) throws InterruptedException {
-       
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -201,7 +171,7 @@ public class Withdrawl extends javax.swing.JFrame implements Runnable {
                 new Withdrawl().setVisible(true);
             }
         });
-       
+        
     }
 
    
