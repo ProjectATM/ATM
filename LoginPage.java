@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class LoginPage extends javax.swing.JFrame {
     String pf;
-    public static String tf,n;
+    public static String tf,n,balance,accno;
     ResultSet res;
     int i=0;
     public LoginPage() {
@@ -127,6 +127,8 @@ public class LoginPage extends javax.swing.JFrame {
              if(res.getString("UNIQUEID").equals(jtf1.getText()) && res.getString("PIN").equals(new String(jpf.getText())) ){
             n=res.getString("NAME");
             tf=res.getString("UNIQUEID");
+            balance=res.getString("BALANCE");
+             accno=res.getString("ACCNO");
             new OptionPage().setVisible(true);
             this.dispose();
             i++;

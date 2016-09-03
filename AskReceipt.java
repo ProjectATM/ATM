@@ -79,7 +79,8 @@ public class AskReceipt extends javax.swing.JFrame {
     }//GEN-LAST:event_jb1ActionPerformed
 
     private void jb2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb2ActionPerformed
-        System.exit(0);
+        new ThanksPage().setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_jb2ActionPerformed
 
     /**
