@@ -1,17 +1,24 @@
 
 import java.awt.Color;
-import static java.lang.Thread.sleep;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 
-public class CollectCash extends javax.swing.JFrame {
-
+public class CollectCash extends javax.swing.JFrame implements ActionListener {
+    Timer t;
     public CollectCash() {
         initComponents();
         getContentPane().setBackground(Color.ORANGE);
-        
-        
+         t=new Timer(5000,this);
+        t.start();
+    }
+     @Override
+    public void actionPerformed(ActionEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        new AskReceipt().setVisible(true);
+        this.dispose();
+        t.stop();
     }
 
    
@@ -22,6 +29,7 @@ public class CollectCash extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Welcome To United Bank");
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -50,7 +58,9 @@ public class CollectCash extends javax.swing.JFrame {
    
     public static void main(String args[]) {
     
-       
+     
+      
+      
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -78,8 +88,8 @@ public class CollectCash extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             
             public void run() {
-                //c.setVisible(true);
-                 
+                new CollectCash().setVisible(true);
+                
                 
             }
         });
@@ -88,4 +98,6 @@ public class CollectCash extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+   
 }
