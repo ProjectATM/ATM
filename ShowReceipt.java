@@ -17,11 +17,31 @@ public class ShowReceipt extends javax.swing.JFrame {
         
         jltime.setText(hour+":"+min+":"+sec);
         
-        jlwith.setText(""+Withdrawl.a);
+        if(!OptionPage.b2){
+    
+            jlwith.setText(""+Withdrawl.cash);
+            
+            jlacno.setText("XXXXXXX"+Withdrawl.accno.substring(7, 10));
+            
+            jlavailbal.setText(""+Withdrawl.nb);
+        }
         
-        jlacno.setText("XXXXXXX"+Withdrawl.accno.substring(7, 10));
+         if(!OptionPage.b3){
+        jlwith.setText(""+FastCash.cash);
         
-        jlavailbal.setText(""+Withdrawl.nb);
+        jlacno.setText("XXXXXXX"+FastCash.accno.substring(7, 10));
+        
+        jlavailbal.setText(""+FastCash.nb);
+    }
+         
+         if(!OptionPage.b4){
+    
+            jlwith.setText(""+TransferMoney.cash);
+            
+            jlacno.setText("XXXXXXX"+TransferMoney.accno.substring(7, 10));
+            
+            jlavailbal.setText(""+TransferMoney.nb);
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
