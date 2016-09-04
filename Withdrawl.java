@@ -2,22 +2,19 @@ import java.awt.Color;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Withdrawl extends javax.swing.JFrame {
-    String uID;
-    String name,tF;
+    String uID,uID1;
+    String tF;
     String balance,al;
     int b;
-    static int nb,a;
+    static int nb,cash;
     static String accno;
    
     public Withdrawl() {
         initComponents();
         getContentPane().setBackground(Color.ORANGE);
-        uID=LoginPage.tf;
-        name=LoginPage.n;
-        System.out.println("name is "+name);
-        System.out.println("uid is "+uID);
                 
     }
    
@@ -79,12 +76,10 @@ public class Withdrawl extends javax.swing.JFrame {
     }  
 
     private void jB1ActionPerformed(java.awt.event.ActionEvent evt) throws InterruptedException {//GEN-FIRST:event_jB1ActionPerformed
-        new CollectCash().setVisible(true);
-        this.dispose();
+        uID=LoginPage.tf;
+        
         String UniqueId = null;
-        String name = null;
         Connection Con;
-        String pin;
         nb=0;
         Statement Stmt;
         Statement Stmt2;
@@ -100,15 +95,14 @@ public class Withdrawl extends javax.swing.JFrame {
             Stmt=Con.createStatement();
             ERs=Stmt.executeQuery("Select * from ATM");
             Stmt2=Con.createStatement();
+           
             while(ERs.next())
             {
                 UniqueId=ERs.getString("UNIQUEID");
-                name=ERs.getString("NAME");             
-                pin=ERs.getString("PIN");
                 balance=ERs.getString("BALANCE");
                 accno=ERs.getString("ACCNO");
                  b=Integer.parseInt(balance);
-                 a=Integer.parseInt(tF1.getText());
+                 cash=Integer.parseInt(tF1.getText());
                 
                  if(UniqueId.equals(uID)){
          
@@ -117,20 +111,25 @@ public class Withdrawl extends javax.swing.JFrame {
                     
                 }
             }
-            if(a<(b-1000))
+             
+            if(cash<(b-1000))
             {
-                nb=(b-a);
+                nb=(b-cash);
                 
                 String k=Integer.toString(nb);
-                
+                if(!OptionPage.b2){
+                    
+                new CollectCash().setVisible(true);
+                this.dispose();
                 String u="update ATM set BALANCE="+nb+" where UNIQUEID='"+uID+"'";
-                int i=Stmt2.executeUpdate(u);
-                System.out.println(u);
-                System.out.println("balance is "+nb);
+                Stmt2.executeUpdate(u);
+                }
             }
             else
             {
-                System.out.println("Don't Have Sufficient Balance To Withdraw.");
+               JOptionPane.showMessageDialog(rootPane,"Don't Have Sufficient Balance To Withdraw.");
+               new LoginPage().setVisible(true);
+               this.dispose();
             }
            
            
