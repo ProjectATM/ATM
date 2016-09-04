@@ -1,7 +1,7 @@
 
 import java.awt.Color;
 public class OptionPage extends javax.swing.JFrame {
-    
+    static Boolean b2=true,b3=true,b4=true;
     public OptionPage() {
         initComponents();
         getContentPane().setBackground(Color.ORANGE);
@@ -40,8 +40,18 @@ public class OptionPage extends javax.swing.JFrame {
         });
 
         jb3.setText("Fast Cash");
+        jb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb3ActionPerformed(evt);
+            }
+        });
 
         jb4.setText("Transfer");
+        jb4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,9 +99,24 @@ public class OptionPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jb1ActionPerformed
 
     private void jb2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb2ActionPerformed
-       new Withdrawl().setVisible(true);
+        b2=jb2.isSelected();
+        
+        new Withdrawl().setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jb2ActionPerformed
+
+    private void jb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb3ActionPerformed
+          b3=jb3.isSelected();
+          
+        new FastCash().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jb3ActionPerformed
+
+    private void jb4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb4ActionPerformed
+        b4=jb4.isSelected();
+        new TransferPage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jb4ActionPerformed
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -126,10 +151,10 @@ public class OptionPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jb1;
-    private javax.swing.JButton jb2;
-    private javax.swing.JButton jb3;
-    private javax.swing.JButton jb4;
+    public javax.swing.JButton jb1;
+    public javax.swing.JButton jb2;
+    public javax.swing.JButton jb3;
+    public javax.swing.JButton jb4;
     private javax.swing.JLabel jl1;
     // End of variables declaration//GEN-END:variables
 }
