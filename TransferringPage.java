@@ -1,4 +1,4 @@
-
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,14 +11,14 @@ public class TransferringPage extends javax.swing.JFrame implements ActionListen
         initComponents();
         
         getContentPane().setBackground(Color.ORANGE);
-        jl.setText("Transefered to "+TransferPage.n+"........");
+        jl.setText("         Transefered to "+TransferPage.n);
          t=new Timer(5000,this);
         t.start();
     }
      @Override
     public void actionPerformed(ActionEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        new AskReceipt().setVisible(true);
+        new ThanksPage().setVisible(true);
         this.dispose();
         t.stop();
     }
@@ -40,10 +40,7 @@ public class TransferringPage extends javax.swing.JFrame implements ActionListen
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jl, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jl, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -89,9 +89,10 @@ public class Withdrawl extends javax.swing.JFrame {
         {
             
              
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            
-            Con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","system","mayank");
+            //Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("com.mysql.jdbc.Driver");
+            //con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","system","mayank");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "");
             Stmt=Con.createStatement();
             ERs=Stmt.executeQuery("Select * from ATM");
             Stmt2=Con.createStatement();
@@ -119,7 +120,7 @@ public class Withdrawl extends javax.swing.JFrame {
                 String k=Integer.toString(nb);
                 if(!OptionPage.b2){
                     
-                new CollectCash().setVisible(true);
+                new AskReceipt().setVisible(true);
                 this.dispose();
                 String u="update ATM set BALANCE="+nb+" where UNIQUEID='"+uID+"'";
                 Stmt2.executeUpdate(u);

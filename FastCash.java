@@ -134,7 +134,7 @@ public class FastCash extends javax.swing.JFrame {
               this.dispose();
           }
           if(i==1){
-        new CollectCash().setVisible(true);
+        new AskReceipt().setVisible(true);
         this.dispose();
         String UniqueId = null;
         String name = null;
@@ -149,9 +149,10 @@ public class FastCash extends javax.swing.JFrame {
         {
             
              
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            
-            Con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","system","mayank");
+            //Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("com.mysql.jdbc.Driver");
+            //con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","system","mayank");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "");
             Stmt=Con.createStatement();
             ERs=Stmt.executeQuery("Select * from ATM");
             Stmt2=Con.createStatement();
@@ -180,12 +181,12 @@ public class FastCash extends javax.swing.JFrame {
                 
                 String u="update ATM set BALANCE="+nb+" where UNIQUEID='"+LoginPage.tf+"'";
                 Stmt2.executeUpdate(u);
-                System.out.println(u);
-                System.out.println("balance is "+nb);
             }
             else
             {
-                System.out.println("Don't Have Sufficient Balance To Withdraw.");
+                JOptionPane.showMessageDialog(rootPane,"Don't Have Sufficient Balance To Withdraw.");
+                 new LoginPage().setVisible(true);
+                 this.dispose();
             }
            
            

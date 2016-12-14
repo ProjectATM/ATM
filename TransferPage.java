@@ -8,6 +8,7 @@ public class TransferPage extends javax.swing.JFrame {
     public static String tf,n,balance,accno;
     ResultSet res;
     int i=0;
+    static int m=0;
     static Boolean bok=true;
    
     public TransferPage() {
@@ -106,14 +107,15 @@ public class TransferPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jtf1ActionPerformed
 
     private void jbokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbokActionPerformed
-        bok=jbok.isSelected();
+        m++;
         Connection con;
         ResultSet res;
         try{
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            System.out.println("driver loaded");
-            con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","system","mayank");
-            System.out.println("connection successful");
+             //Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("com.mysql.jdbc.Driver");
+            //con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","system","mayank");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "");
+            
             Statement stmt=con.createStatement();
             res=stmt.executeQuery("select*from ATM");
             while(res.next()){
@@ -123,9 +125,17 @@ public class TransferPage extends javax.swing.JFrame {
                     tf=res.getString("UNIQUEID");
                     balance=res.getString("BALANCE");
                     accno=res.getString("ACCNO");
-                    new TransferMoney().setVisible(true);
-                    this.dispose();
                     i++;
+                    if(tf.equals(LoginPage.tf)){
+                      JOptionPane.showMessageDialog(rootPane,"Both the ids should be different.");
+                      new FrontPage().setVisible(true);
+                      this.dispose();
+                      break;
+                 }
+                    else{
+                        new TransferMoney().setVisible(true);
+                    this.dispose();
+                    }
                 }
             }
             if(i==0){

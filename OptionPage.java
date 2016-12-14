@@ -1,10 +1,23 @@
 
 import java.awt.Color;
-public class OptionPage extends javax.swing.JFrame {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+public class OptionPage extends javax.swing.JFrame implements ActionListener{
     static Boolean b2=true,b3=true,b4=true;
+    Timer t;
     public OptionPage() {
         initComponents();
         getContentPane().setBackground(Color.ORANGE);
+         t=new Timer(10000,this);
+        t.start();
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        t.stop();
+        this.dispose();
+        //System.exit(0);
     }
     
     @SuppressWarnings("unchecked")

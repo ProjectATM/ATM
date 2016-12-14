@@ -95,9 +95,10 @@ public class TransferMoney extends javax.swing.JFrame {
          
         try
         {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            
-            Con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","system","mayank");
+             //Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("com.mysql.jdbc.Driver");
+            //con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","system","mayank");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "");
             Stmt=Con.createStatement();
             ERs=Stmt.executeQuery("Select * from ATM");
             // ERs1=Stmt.executeQuery("Select * from ATM");
@@ -106,21 +107,22 @@ public class TransferMoney extends javax.swing.JFrame {
            
             while(ERs.next())
             {
-                 UniqueId1=ERs.getString("UNIQUEID");
+                UniqueId1=ERs.getString("UNIQUEID");
                 UniqueId=ERs.getString("UNIQUEID");
-                 if(UniqueId.equals(uID)){
-                      UniqueId=ERs.getString("UNIQUEID");
-                balance=ERs.getString("BALANCE");
-                accno=ERs.getString("ACCNO");
-                 b=Integer.parseInt(balance);
-                 cash=Integer.parseInt(jtf.getText());
+                if(UniqueId.equals(uID)){
+                    UniqueId=ERs.getString("UNIQUEID");
+                    balance=ERs.getString("BALANCE");
+                    accno=ERs.getString("ACCNO");
+                    System.out.println(accno);
+                    b=Integer.parseInt(balance);
+                    cash=Integer.parseInt(jtf.getText());
                 }
                  if(UniqueId1.equals(uID1)){
-                     UniqueId1=ERs.getString("UNIQUEID");
-                balance1=ERs.getString("BALANCE");
-                
-                 b1=Integer.parseInt(balance1);
+                    UniqueId1=ERs.getString("UNIQUEID");
+                    balance1=ERs.getString("BALANCE");
+                    b1=Integer.parseInt(balance1);
                  }
+                 
             }
            
             
@@ -128,7 +130,7 @@ public class TransferMoney extends javax.swing.JFrame {
             if(cash<(b-1000))
             {
                 nb=(b-cash);
-                new TransferringPage().setVisible(true);
+                new AskReceipt().setVisible(true);
                 this.dispose();
                 String u="update ATM set BALANCE="+nb+" where UNIQUEID='"+LoginPage.tf+"'";
                 Stmt2.executeUpdate(u);

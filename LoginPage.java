@@ -1,20 +1,34 @@
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
-public class LoginPage extends javax.swing.JFrame {
+public class LoginPage extends javax.swing.JFrame implements ActionListener {
+    Timer t;
     String pf;
-    public static String tf,n,balance,accno;
+    public static String tf, n, balance, accno;
     ResultSet res;
-    int i=0;
+    int i = 0;
+
     public LoginPage() {
         initComponents();
         getContentPane().setBackground(java.awt.Color.ORANGE);
-        
+         t=new Timer(20000,this);
+        t.start();
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        t.stop();
+        this.dispose();
+        //System.exit(0);
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -105,48 +119,48 @@ public class LoginPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf1ActionPerformed
-     tf=jtf1.getText();  
+        tf = jtf1.getText();
     }//GEN-LAST:event_jtf1ActionPerformed
 
     private void jpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpfActionPerformed
-       pf=jpf.getText();
+        pf = jpf.getText();
     }//GEN-LAST:event_jpfActionPerformed
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
-          Connection con;
+        Connection con;
         ResultSet res;
-        try{
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-        System.out.println("driver loaded");
-        con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","system","mayank");
-            System.out.println("connection successful");
-        Statement stmt=con.createStatement();
-        res=stmt.executeQuery("select*from ATM");
-            while(res.next()){
-                  
-             if(res.getString("UNIQUEID").equals(jtf1.getText()) && res.getString("PIN").equals(new String(jpf.getText())) ){
-            n=res.getString("NAME");
-            tf=res.getString("UNIQUEID");
-            balance=res.getString("BALANCE");
-             accno=res.getString("ACCNO");
-            new OptionPage().setVisible(true);
-            this.dispose();
-            i++;
-            }   
+        try {
+            //Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("com.mysql.jdbc.Driver");
+            //con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE ","system","mayank");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "");
+            Statement stmt = con.createStatement();
+            res = stmt.executeQuery("select * from ATM");
+            while (res.next()) {
+
+                if (res.getString("UNIQUEID").equals(jtf1.getText()) && res.getString("PIN").equals(new String(jpf.getText()))) {
+                    n = res.getString("NAME");
+                    tf = res.getString("UNIQUEID");
+                    balance = res.getString("BALANCE");
+                    accno = res.getString("ACCNO");
+                    new OptionPage().setVisible(true);
+                    this.dispose();
+                    i++;
+                }
             }
-              if(i==0){
-                 
-            JOptionPane.showMessageDialog(rootPane,"Inavalid UNIQUEID or PIN");
+            if (i == 0) {
+
+                JOptionPane.showMessageDialog(rootPane, "Inavalid UNIQUEID or PIN");
+                new FrontPage().setVisible(true);
+                this.dispose();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Server Down");
             new FrontPage().setVisible(true);
             this.dispose();
-            }
         }
-    catch(Exception e){
-        e.printStackTrace();
-    }
     }//GEN-LAST:event_okActionPerformed
 
-    
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.util.*;
 public class ShowReceipt extends javax.swing.JFrame {
+    int i=0;
     public ShowReceipt() {
         initComponents();
         getContentPane().setBackground(Color.ORANGE);
@@ -41,6 +42,7 @@ public class ShowReceipt extends javax.swing.JFrame {
             jlacno.setText("XXXXXXX"+TransferMoney.accno.substring(7, 10));
             
             jlavailbal.setText(""+TransferMoney.nb);
+            i++;
         }
     }
     @SuppressWarnings("unchecked")
@@ -165,8 +167,14 @@ public class ShowReceipt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         new ThanksPage().setVisible(true);
+        if(i==0){
+        new CollectCash().setVisible(true);
          this.dispose();
+        }else{
+            new TransferringPage().setVisible(true);
+            this.dispose();
+        }
+         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
